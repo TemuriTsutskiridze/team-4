@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/feedbackDetails" element={<FeedbackDetails />} />
       </Routes>
     </AppContext.Provider>
-  );
+);
 };
 
 export default App;
