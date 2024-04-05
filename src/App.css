@@ -1,8 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 0;
+}
+
+body {
+  background-color: #f7f8fd;
+  display: flex;
 }
 
 .logo {
@@ -39,4 +47,17 @@
 
 .read-the-docs {
   color: #888;
+}
+
+@layer utilities {
+  .section {
+    @apply w-full h-[100svh];
+  }
+
+  .flexCenter {
+    @apply flex items-center justify-center;
+  }
+  .flexBetween {
+    @apply flex items-center justify-between flex-row;
+  }
 }
