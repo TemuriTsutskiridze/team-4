@@ -3,7 +3,7 @@ import Button from "../components/Button";
 
 const FeedbackDetails = () => {
   return (
-    <div className="flexCenter flex-col section gap-4 w-[730px]">
+    <div className="flexCenter flex-col section gap-4 w-[730px] jost-font">
       <div className="flexBetween w-full">
         <BackButton />
         <Button bgColor="bg-blue-200" text="Edit Feedback" />
