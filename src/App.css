@@ -22,7 +22,7 @@ body {
 
 @layer utilities {
   .section {
-    @apply w-full h-[100svh];
+    @apply w-full md:py-20 py-10 md:px-8 px-4;
   }
 
   .flexCenter {
