@@ -19,6 +19,7 @@ export default {
           100: "#ffffff",
           50: "#f2f4ff",
           10: "#f7f8fd",
+          5: "#cdd2ee",
         },
         tomato: {
           50: "#f49f85",
