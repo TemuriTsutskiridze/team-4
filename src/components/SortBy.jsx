@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { FaAngleUp } from "react-icons/fa";
 import { IoMdCheckmark } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 function SortBy() {
   const [sortBy, setSortBy] = useState("Most Upvotes");
@@ -97,11 +98,13 @@ function SortBy() {
           )}
         </div>
       </div>
-      <button
-        className={`bg-purple-50 text-white-100 text-[14px] font-bold py-[12px] px-4 rounded-[10px] flexCenter`}
-      >
-        + Add Feedback
-      </button>
+      <Link to={"/new-feedback"}>
+        <button
+          className={`bg-purple-50 text-white-100 text-[14px] font-bold py-[12px] px-4 rounded-[10px] flexCenter`}
+        >
+          + Add Feedback
+        </button>
+      </Link>
     </div>
   );
 }

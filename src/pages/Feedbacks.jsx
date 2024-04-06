@@ -53,22 +53,25 @@ function Feedbacks() {
               {feedback.category}
             </button>
             <div className="flex flex-row items-center justify-between mt-4 w-full">
-              <button
-                onClick={() => handleUpvoteClick(feedback.id)}
-                className="rounded-lg bg-white-50 text-blue-50 text-[13px] font-bold py-2 pl-4 pr-3 flex flex-row items-center gap-[10px]"
-              >
-                {upvoted.hasOwnProperty(feedback.id) && upvoted[feedback.id] ? (
-                  <IoIosArrowDown className="fill-blue-200" />
-                ) : (
-                  <IoIosArrowUp className="fill-blue-200" />
-                )}
+              {feedback.upvotes ? (
+                <button
+                  onClick={() => handleUpvoteClick(feedback.id)}
+                  className="rounded-lg bg-white-50 text-blue-50 text-[13px] font-bold py-2 pl-4 pr-3 flex flex-row items-center gap-[5px]"
+                >
+                  {upvoted.hasOwnProperty(feedback.id) &&
+                  upvoted[feedback.id] ? (
+                    <IoIosArrowDown className="fill-blue-200" />
+                  ) : (
+                    <IoIosArrowUp className="fill-blue-200" />
+                  )}
 
-                <p>
-                  {upvoted.hasOwnProperty(feedback.id) && upvoted[feedback.id]
-                    ? feedback.upvotes + 1
-                    : feedback.upvotes}
-                </p>
-              </button>
+                  <p>
+                    {upvoted.hasOwnProperty(feedback.id) && upvoted[feedback.id]
+                      ? feedback.upvotes + 1
+                      : feedback.upvotes}
+                  </p>
+                </button>
+              ) : null}
               <div className="flex flex-row gap-[6px] items-center">
                 <svg width="18" height="16" xmlns="http://www.w3.org/2000/svg">
                   <path
