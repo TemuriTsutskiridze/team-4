@@ -7,7 +7,7 @@ export default {
     extend: {
       colors: {
         purple: {
-          50: "#AD1FEA",
+          50: "#ad1fea",
         },
         blue: {
           200: "#4661e6",
@@ -19,6 +19,7 @@ export default {
           100: "#ffffff",
           50: "#f2f4ff",
           10: "#f7f8fd",
+          5: "#cdd2ee",
         },
         tomato: {
           50: "#f49f85",
