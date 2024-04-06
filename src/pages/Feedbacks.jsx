@@ -1,7 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../App";
 import HeaderFeedbacks from "../components/HeaderFeedbacks";
 import SortBy from "../components/SortBy";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 
 function Feedbacks() {
   const { appData, setAppData } = useContext(AppContext);
@@ -10,6 +12,26 @@ function Feedbacks() {
   const suggestionFeedbacks = appData.productRequests.filter(
     (feedback) => feedback.status === "suggestion"
   );
+
+  const [upvoted, setUpvoted] = useState({});
+
+  // Function to handle upvote clicks
+  const handleUpvoteClick = (feedbackId) => {
+    // Check if the feedback has been upvoted
+    if (upvoted.hasOwnProperty(feedbackId)) {
+      // Toggle the upvote status for the feedback
+      setUpvoted((prevUpvoted) => ({
+        ...prevUpvoted,
+        [feedbackId]: !prevUpvoted[feedbackId],
+      }));
+    } else {
+      // If the feedback has not been upvoted yet, set the upvote status to true
+      setUpvoted((prevUpvoted) => ({
+        ...prevUpvoted,
+        [feedbackId]: true,
+      }));
+    }
+  };
 
   return (
     <div className="w-screen">
@@ -31,17 +53,21 @@ function Feedbacks() {
               {feedback.category}
             </button>
             <div className="flex flex-row items-center justify-between mt-4 w-full">
-              <button className="rounded-lg bg-white-50 text-blue-50 text-[13px] font-bold py-2 pl-4 pr-3 flex flex-row items-center gap-[10px]">
-                <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M1 6l4-4 4 4"
-                    stroke="#4661E6"
-                    strokeWidth="2"
-                    fill="none"
-                    fillRule="evenodd"
-                  />
-                </svg>
-                {feedback.upvotes}
+              <button
+                onClick={() => handleUpvoteClick(feedback.id)}
+                className="rounded-lg bg-white-50 text-blue-50 text-[13px] font-bold py-2 pl-4 pr-3 flex flex-row items-center gap-[10px]"
+              >
+                {upvoted.hasOwnProperty(feedback.id) && upvoted[feedback.id] ? (
+                  <IoIosArrowDown className="fill-blue-200" />
+                ) : (
+                  <IoIosArrowUp className="fill-blue-200" />
+                )}
+
+                <p>
+                  {upvoted.hasOwnProperty(feedback.id) && upvoted[feedback.id]
+                    ? feedback.upvotes + 1
+                    : feedback.upvotes}
+                </p>
               </button>
               <div className="flex flex-row gap-[6px] items-center">
                 <svg width="18" height="16" xmlns="http://www.w3.org/2000/svg">
