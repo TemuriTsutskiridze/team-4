@@ -7,12 +7,13 @@ import { AppContext } from "../App";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { TbMessageCircle2Filled } from "react-icons/tb";
 import Comments from "../components/Comments";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const FeedbackDetails = () => {
+  let { id } = useParams();
   const { appData, setAppData } = useContext(AppContext);
 
-  const post = appData.productRequests[1];
+  const post = appData.productRequests[id - 1];
 
   const [text, setText] = useState("");
   const maxLength = 250;
@@ -30,6 +31,8 @@ const FeedbackDetails = () => {
     });
     setAppData({ ...appData, productRequests: updatedProductRequests });
   };
+
+  console.log(id);
 
   return (
     <>

@@ -32,7 +32,7 @@ const App = () => {
         <Route path="/new-feedback" element={<NewFeedback />} />
         <Route path="/edit-feedback" element={<EditFeedback />} />
         <Route path="/roadmap" element={<Roadmap />} />
-        <Route path="/feedbackDetails" element={<FeedbackDetails />} />
+        <Route path="/feedbackDetails/:id" element={<FeedbackDetails />} />
       </Routes>
     </AppContext.Provider>
   );
