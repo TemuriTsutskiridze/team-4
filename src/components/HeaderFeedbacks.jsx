@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { GrClose } from "react-icons/gr";
 import { Link } from "react-router-dom";
-import Roadmap from "../pages/Roadmap";
 
-function HeaderFeedbacks() {
-  const [showMenu, setShowMenu] = useState(false);
-
+function HeaderFeedbacks({
+  showMenu,
+  setShowMenu,
+  activeCategory,
+  setActiveCategory,
+}) {
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -29,13 +30,19 @@ function HeaderFeedbacks() {
 
   // Function to toggle the visibility of the div
   const toggleMenu = () => {
-    setShowMenu(!showMenu);
+    setShowMenu((prevShowMenu) => !prevShowMenu);
     document.body.style.overflowY = showMenu ? "auto" : "hidden";
   };
 
   const closeMenu = () => {
     setShowMenu(false);
     document.body.style.overflowY = "auto";
+  };
+
+  //function to get clicked category from menu and set it as active category to then filter cards on Feedbacks page
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+    toggleMenu();
   };
 
   return (
@@ -76,22 +83,67 @@ function HeaderFeedbacks() {
         <div className="fixed top-0 left-0 w-full h-full z-50">
           <div className="menu px-6 pt-6" ref={menuRef}>
             <div className="flex flex-wrap gap-2 items-center bg-white-100 pl-6 pr-[18px] pt-6 pb-9 rounded-lg">
-              <button className=" rounded-lg bg-white-50 text-blue-200 text-[13px] font-bold capitalize py-[5px] px-4">
+              <button
+                onClick={() => handleCategoryClick("All")}
+                className=" rounded-lg text-[13px] font-bold capitalize py-[5px] px-4"
+                style={{
+                  background: activeCategory === "All" ? "#4661e6" : "#f2f4ff",
+                  color: activeCategory === "All" ? "#f2f4ff" : "#4661e6",
+                }}
+              >
                 All
               </button>
-              <button className="rounded-lg bg-white-50 text-blue-200 text-[13px] font-bold capitalize py-[5px] px-4">
+              <button
+                onClick={() => handleCategoryClick("UI")}
+                className="rounded-lg text-[13px] font-bold capitalize py-[5px] px-4"
+                style={{
+                  background: activeCategory === "UI" ? "#4661e6" : "#f2f4ff",
+                  color: activeCategory === "UI" ? "#f2f4ff" : "#4661e6",
+                }}
+              >
                 UI
               </button>
-              <button className="rounded-lg bg-white-50 text-blue-200 text-[13px] font-bold capitalize py-[5px] px-4">
+              <button
+                onClick={() => handleCategoryClick("UX")}
+                className="rounded-lg text-[13px] font-bold capitalize py-[5px] px-4"
+                style={{
+                  background: activeCategory === "UX" ? "#4661e6" : "#f2f4ff",
+                  color: activeCategory === "UX" ? "#f2f4ff" : "#4661e6",
+                }}
+              >
                 UX
               </button>
-              <button className="mt-2 rounded-lg bg-white-50 text-blue-200 text-[13px] font-bold capitalize py-[5px] px-4">
+              <button
+                onClick={() => handleCategoryClick("Enhancement")}
+                className="mt-2 rounded-lg text-[13px] font-bold capitalize py-[5px] px-4"
+                style={{
+                  background:
+                    activeCategory === "Enhancement" ? "#4661e6" : "#f2f4ff",
+                  color:
+                    activeCategory === "Enhancement" ? "#f2f4ff" : "#4661e6",
+                }}
+              >
                 Enhancement
               </button>
-              <button className="mt-2 rounded-lg bg-white-50 text-blue-200 text-[13px] font-bold capitalize py-[5px] px-4">
+              <button
+                onClick={() => handleCategoryClick("Bug")}
+                className="mt-2 rounded-lg text-[13px] font-bold capitalize py-[5px] px-4"
+                style={{
+                  background: activeCategory === "Bug" ? "#4661e6" : "#f2f4ff",
+                  color: activeCategory === "Bug" ? "#f2f4ff" : "#4661e6",
+                }}
+              >
                 Bug
               </button>
-              <button className="mt-2 rounded-lg bg-white-50 text-blue-200 text-[13px] font-bold capitalize py-[5px] px-4">
+              <button
+                onClick={() => handleCategoryClick("Feature")}
+                className="mt-2 rounded-lg text-[13px] font-bold capitalize py-[5px] px-4"
+                style={{
+                  background:
+                    activeCategory === "Feature" ? "#4661e6" : "#f2f4ff",
+                  color: activeCategory === "Feature" ? "#f2f4ff" : "#4661e6",
+                }}
+              >
                 Feature
               </button>
             </div>

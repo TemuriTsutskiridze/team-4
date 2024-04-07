@@ -12,16 +12,27 @@ export const AppContext = createContext();
 
 const App = () => {
   const [appData, setAppData] = useState(data);
+  const [showMenu, setShowMenu] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All");
 
   return (
-    <AppContext.Provider value={{ appData, setAppData }}>
+    <AppContext.Provider
+      value={{
+        appData,
+        setAppData,
+        showMenu,
+        setShowMenu,
+        activeCategory,
+        setActiveCategory,
+      }}
+    >
       <Routes>
         <Route path="/" element={<Navigate to="/feedbacks" />} />
         <Route path="/feedbacks" element={<Feedbacks />} />
         <Route path="/new-feedback" element={<NewFeedback />} />
         <Route path="/edit-feedback" element={<EditFeedback />} />
         <Route path="/roadmap" element={<Roadmap />} />
-        <Route path="/feedbackDetails" element={<FeedbackDetails />} />
+        <Route path="/feedbackDetails/:id" element={<FeedbackDetails />} />
       </Routes>
     </AppContext.Provider>
   );
