@@ -1,13 +1,12 @@
-import "./app.css";
-
+import "./App.css";
 import { Navigate, Route, Routes } from "react-router";
 import NewFeedback from "./pages/NewFeedback";
 import EditFeedback from "./pages/EditFeedback";
 import Roadmap from "./pages/Roadmap";
 import FeedbackDetails from "./pages/FeedbackDetails";
+import Feedbacks from "./pages/Feedbacks";
 import { createContext, useState } from "react";
 import data from "./data.json";
-import Feedbacks from "./pages/Feedbacks";
 
 export const AppContext = createContext();
 

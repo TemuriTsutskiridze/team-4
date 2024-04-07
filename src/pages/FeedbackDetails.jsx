@@ -4,9 +4,10 @@ import BackButton from "../components/BackButton";
 import Button from "../components/Button";
 import { AppContext } from "../App";
 
-import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { TbMessageCircle2Filled } from "react-icons/tb";
 import Comments from "../components/Comments";
+import { Link } from "react-router-dom";
 
 const FeedbackDetails = () => {
   const { appData, setAppData } = useContext(AppContext);
@@ -34,8 +35,15 @@ const FeedbackDetails = () => {
     <>
       <div className="flexCenter flex-col section gap-6 max-w-[730px] jost-font">
         <div className="flexBetween w-full">
-          <BackButton />
-          <Button bgColor="bg-blue-200 hover:bg-blue-10" text="Edit Feedback" />
+          <Link to="/feedbacks">
+            <BackButton />
+          </Link>
+          <Link to="/edit-feedback">
+            <Button
+              bgColor="bg-blue-200 hover:bg-blue-10"
+              text="Edit Feedback"
+            />
+          </Link>
         </div>
 
         <div
@@ -46,9 +54,13 @@ const FeedbackDetails = () => {
             <div
               onClick={() => giveVote(post.id, !post.hasVoted)}
               className="bg-white-50 hover:bg-[#cfd7ff] md:mt-0 mt-3 px-2.5 md:h-[53px] py-[7px] 
-             flex md:flex-col flex-row items-center rounded-[10px] cursor-pointer transition-all md:w-auto w-[69px]"
+             flex md:flex-col flex-row items-center rounded-[10px] cursor-pointer transition-all md:w-[45px] w-[69px]"
             >
-              <IoIosArrowUp className="text-blue-200" />
+              {!post.hasVoted ? (
+                <IoIosArrowUp className="text-blue-200" />
+              ) : (
+                <IoIosArrowDown className="text-blue-200" />
+              )}
               <span className="text-[13px] font-bold text-blue-50 md:ml-0 ml-2">
                 {post.upvotes}
               </span>
@@ -72,7 +84,18 @@ const FeedbackDetails = () => {
             <div className="flex items-center gap-1.5">
               <TbMessageCircle2Filled className="text-[#cdd2ee] text-[18px]" />
               <span className="md:text-[16px] text-[13px] tracking-[-0.22px] font-bold text-blue-50">
-                {post.comments ? post.comments.length : 0}
+                {post.comments ? (
+                  post.comments.length +
+                  post.comments.reduce(
+                    (total, comment) =>
+                      total + (comment.replies ? comment.replies.length : 0),
+                    0
+                  )
+                ) : (
+                  <p className="text-blue-50 text-[13px] font-bold opacity-[0.5]">
+                    0
+                  </p>
+                )}
               </span>
             </div>
           </div>
@@ -111,7 +134,7 @@ const FeedbackDetails = () => {
               {maxLength - text.length} Characters left
             </p>
             <Button
-              bgColor="bg-purple-100 hover:bg-purple-50"
+              bgColor="bg-purple-50 hover:bg-purple-100"
               text="Post Comment"
             />
           </div>

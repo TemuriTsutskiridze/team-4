@@ -87,7 +87,7 @@ const Comments = ({ comment }) => {
                           rows="10"
                         ></textarea>
                         <Button
-                          bgColor="bg-purple-100 hover:bg-blue-10 min-w-[125px]"
+                          bgColor="bg-purple-50 hover:bg-purple-100 min-w-[125px]"
                           text="Post Reply"
                         />
                       </div>
@@ -110,7 +110,7 @@ const Comments = ({ comment }) => {
                 rows="10"
               ></textarea>
               <Button
-                bgColor="bg-purple-100 hover:bg-blue-10 min-w-[125px]"
+                bgColor="bg-purple-50 hover:bg-purple-100 min-w-[125px]"
                 text="Post Reply"
               />
             </div>

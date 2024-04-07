@@ -5,15 +5,25 @@
 @tailwind utilities;
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0;
+  height: 100%;
   font-family: "Jost", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   background-color: #f7f8fd;
   display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 .jost-font {
@@ -24,11 +34,30 @@ body {
   .section {
     @apply w-full md:py-20 py-10 md:px-8 px-4;
   }
-
   .flexCenter {
     @apply flex items-center justify-center;
   }
   .flexBetween {
     @apply flex items-center justify-between flex-row;
   }
+}
+
+.menu {
+  max-width: 18.75rem;
+  min-height: 100vh;
+  min-height: 100dvh;
+  z-index: 20;
+  position: absolute;
+  top: 75px;
+  width: 72%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  visibility: visible;
+  right: 0;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  gap: 2.5rem;
+  background-color: #f7f8fd;
+  overflow: hidden;
 }
