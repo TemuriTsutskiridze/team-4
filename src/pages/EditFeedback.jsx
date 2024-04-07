@@ -9,7 +9,7 @@ export default function EditFeedback() {
   return (
     <div className="flexCenter flex-col section gap-8 w-[730px] jost-font ml-auto">
       <div className="flexBetween w-full">
-        <Link to="/feedbackDetails">
+        <Link to="/feedbackDetails/:id">
           <BackButton />
         </Link>
         <br />
