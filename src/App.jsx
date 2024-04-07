@@ -1,4 +1,4 @@
-import "./app.css";
+import "./App.css";
 import { Navigate, Route, Routes } from "react-router";
 import NewFeedback from "./pages/NewFeedback";
 import EditFeedback from "./pages/EditFeedback";
@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/feedbackDetails" element={<FeedbackDetails />} />
       </Routes>
     </AppContext.Provider>
-);
+  );
 };
 
 export default App;

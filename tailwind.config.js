@@ -7,7 +7,8 @@ export default {
     extend: {
       colors: {
         purple: {
-          50: "#ad1fea",
+          50: "#AD1FEA",
+          100: "#c75af6",
         },
         blue: {
           200: "#4661e6",

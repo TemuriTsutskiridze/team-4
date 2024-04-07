@@ -1,11 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
-
 #root {
   height: 100%;
+  font-family: "Jost", sans-serif;
 }
 
 * {
@@ -17,10 +18,12 @@
 body {
   background-color: #f7f8fd;
   display: flex;
+  justify-content: center;
   position: relative;
   width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 .jost-font {
@@ -29,9 +32,8 @@ body {
 
 @layer utilities {
   .section {
-    @apply w-full h-[100svh];
+    @apply w-full md:py-20 py-10 md:px-8 px-4;
   }
-
   .flexCenter {
     @apply flex items-center justify-center;
   }
