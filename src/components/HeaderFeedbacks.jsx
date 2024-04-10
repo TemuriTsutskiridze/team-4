@@ -47,7 +47,7 @@ function HeaderFeedbacks({
 
   return (
     <div
-      className="w-full px-6 py-4 flex justify-between items-center"
+      className="w-full px-6 py-4 flex justify-between items-center md:hidden"
       style={{
         backgroundImage:
           "url('/assets/suggestions/mobile/background-header.png')",

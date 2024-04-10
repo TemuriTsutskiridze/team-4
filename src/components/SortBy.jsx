@@ -3,8 +3,9 @@ import { FaAngleDown } from "react-icons/fa";
 import { FaAngleUp } from "react-icons/fa";
 import { IoMdCheckmark } from "react-icons/io";
 import { Link } from "react-router-dom";
+import SuggestionsSvg from "./SuggestionsSvg";
 
-function SortBy({ setSortedFeedbacks, sortFeedbacks }) {
+function SortBy({ setSortedFeedbacks, sortFeedbacks, filteredFeedbacks }) {
   const [sortBy, setSortBy] = useState("Most Upvotes");
   const [showDropDown, setShowDropdown] = useState(false);
   const [activeSort, setActiveSort] = useState("Most Upvotes");
@@ -37,8 +38,12 @@ function SortBy({ setSortedFeedbacks, sortFeedbacks }) {
   }, []);
 
   return (
-    <div className="w-full px-6 py-[18px] bg-blue-100 flex justify-between items-center">
+    <div className="w-full px-6 py-[18px] bg-blue-100 flex justify-between items-center md:mt-[40px] md:rounded-lg md:py-[14px] md:px-0 md:pl-6 md:pr-3">
       <div className="flex items-center">
+        <SuggestionsSvg />
+        <p className="hidden md:block md:ml-4 md:mr-[38px] md:text-white-50 md:text-[18px] md:font-bold">
+          {filteredFeedbacks.length} Suggestions
+        </p>
         <p className="text-[13px] text-white-50 font-normal">Sort by :</p>
         <div
           className="flex items-end gap-1 ml-[3px] relative"
