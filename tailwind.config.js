@@ -26,6 +26,7 @@ export default {
         },
         skyBlue: {
           50: "#62bcfa",
+          100: "#cfd7ff",
         },
       },
     },

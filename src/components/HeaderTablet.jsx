@@ -7,9 +7,9 @@ function HeaderTablet({ activeCategory, setActiveCategory }) {
     setActiveCategory(category);
   };
   return (
-    <div className="hidden md:w-full md:flex mf:flex-row md:gap-x-[10px]">
+    <div className="hidden md:w-full md:flex mf:flex-row md:gap-x-[10px] lg:flex-col lg:gap-y-6 lg:w-[255px]">
       <div
-        className="md:pl-6 md:pr-[46px] md:pb-6 md:pt-[103px] rounded-lg md:w-full"
+        className="md:pl-6 md:pr-[46px] md:pb-6 md:pt-[103px] rounded-lg md:w-full lg:w-[255px]"
         style={{
           backgroundImage:
             "url('/assets/suggestions/tablet/background-header.png')",
@@ -22,10 +22,10 @@ function HeaderTablet({ activeCategory, setActiveCategory }) {
         </p>
         <p className="text-[15px] text-white-50">Feedback Board</p>
       </div>
-      <div className="md:pt-6 md:pl-6 md:pr-[18px] md:pb-[42px] md:flex md:flex-wrap md:gap-2 md:items-center md:bg-white-100 md:rounded-lg md:md:w-full">
+      <div className="md:pt-6 md:pl-6 md:pr-[18px] md:pb-[42px] md:flex md:flex-wrap md:gap-2 md:items-center md:bg-white-100 md:rounded-lg md:md:w-full lg:w-[255px]">
         <button
           onClick={() => handleCategoryClick("All")}
-          className=" rounded-lg text-[13px] font-bold capitalize py-[5px] px-4"
+          className=" rounded-lg text-[13px] font-bold capitalize py-[5px] px-4 lg:hover:bg-skyBlue-100"
           style={{
             background: activeCategory === "All" ? "#4661e6" : "#f2f4ff",
             color: activeCategory === "All" ? "#f2f4ff" : "#4661e6",
@@ -35,7 +35,7 @@ function HeaderTablet({ activeCategory, setActiveCategory }) {
         </button>
         <button
           onClick={() => handleCategoryClick("UI")}
-          className="rounded-lg text-[13px] font-bold capitalize py-[5px] px-4"
+          className="rounded-lg text-[13px] font-bold capitalize py-[5px] px-4 lg:hover:bg-skyBlue-100"
           style={{
             background: activeCategory === "UI" ? "#4661e6" : "#f2f4ff",
             color: activeCategory === "UI" ? "#f2f4ff" : "#4661e6",
@@ -45,7 +45,7 @@ function HeaderTablet({ activeCategory, setActiveCategory }) {
         </button>
         <button
           onClick={() => handleCategoryClick("UX")}
-          className="rounded-lg text-[13px] font-bold capitalize py-[5px] px-4"
+          className="rounded-lg text-[13px] font-bold capitalize py-[5px] px-4 lg:hover:bg-skyBlue-100"
           style={{
             background: activeCategory === "UX" ? "#4661e6" : "#f2f4ff",
             color: activeCategory === "UX" ? "#f2f4ff" : "#4661e6",
@@ -55,7 +55,7 @@ function HeaderTablet({ activeCategory, setActiveCategory }) {
         </button>
         <button
           onClick={() => handleCategoryClick("Enhancement")}
-          className="mt-2 rounded-lg text-[13px] font-bold capitalize py-[5px] px-4"
+          className="mt-2 rounded-lg text-[13px] font-bold capitalize py-[5px] px-4 lg:hover:bg-skyBlue-100"
           style={{
             background:
               activeCategory === "Enhancement" ? "#4661e6" : "#f2f4ff",
@@ -66,7 +66,7 @@ function HeaderTablet({ activeCategory, setActiveCategory }) {
         </button>
         <button
           onClick={() => handleCategoryClick("Bug")}
-          className="mt-2 rounded-lg text-[13px] font-bold capitalize py-[5px] px-4"
+          className="mt-2 rounded-lg text-[13px] font-bold capitalize py-[5px] px-4 lg:hover:bg-skyBlue-100"
           style={{
             background: activeCategory === "Bug" ? "#4661e6" : "#f2f4ff",
             color: activeCategory === "Bug" ? "#f2f4ff" : "#4661e6",
@@ -76,7 +76,7 @@ function HeaderTablet({ activeCategory, setActiveCategory }) {
         </button>
         <button
           onClick={() => handleCategoryClick("Feature")}
-          className="mt-2 rounded-lg text-[13px] font-bold capitalize py-[5px] px-4"
+          className="mt-2 rounded-lg text-[13px] font-bold capitalize py-[5px] px-4 lg:hover:bg-skyBlue-100 "
           style={{
             background: activeCategory === "Feature" ? "#4661e6" : "#f2f4ff",
             color: activeCategory === "Feature" ? "#f2f4ff" : "#4661e6",
@@ -85,7 +85,7 @@ function HeaderTablet({ activeCategory, setActiveCategory }) {
           Feature
         </button>
       </div>
-      <div className="flex flex-wrap gap-2 items-center bg-white-100 px-6 pt-5 pb-6 rounded-lg md:w-full">
+      <div className="flex flex-wrap gap-2 items-center bg-white-100 px-6 pt-5 pb-6 rounded-lg md:w-full lg:w-[255px]">
         <div className="flex flex-row items-center w-full justify-between">
           <p className="text-blue-50 font-bold text-[18px]">Roadmap</p>
           <Link to={"/roadmap"}>

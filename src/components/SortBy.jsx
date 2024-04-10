@@ -38,7 +38,7 @@ function SortBy({ setSortedFeedbacks, sortFeedbacks, filteredFeedbacks }) {
   }, []);
 
   return (
-    <div className="w-full px-6 py-[18px] bg-blue-100 flex justify-between items-center md:mt-[40px] md:rounded-lg md:py-[14px] md:px-0 md:pl-6 md:pr-3">
+    <div className="w-full px-6 py-[18px] bg-blue-100 flex justify-between items-center md:mt-[40px] md:rounded-lg md:py-[14px] md:px-0 md:pl-6 md:pr-3 lg:my-0">
       <div className="flex items-center">
         <SuggestionsSvg />
         <p className="hidden md:block md:ml-4 md:mr-[38px] md:text-white-50 md:text-[18px] md:font-bold">
@@ -46,7 +46,7 @@ function SortBy({ setSortedFeedbacks, sortFeedbacks, filteredFeedbacks }) {
         </p>
         <p className="text-[13px] text-white-50 font-normal">Sort by :</p>
         <div
-          className="flex items-end gap-1 ml-[3px] relative"
+          className="flex items-end gap-1 ml-[3px] relative lg:cursor-pointer"
           onClick={() => setShowDropdown(!showDropDown)}
         >
           <p className="text-[13px] text-white-100 font-semibold">
@@ -61,7 +61,7 @@ function SortBy({ setSortedFeedbacks, sortFeedbacks, filteredFeedbacks }) {
           {showDropDown && (
             <div
               ref={dropdownRef}
-              className="absolute top-[23px] left-[-49px] mt-1 bg-white-100 rounded-lg w-[168px] shadow-lg"
+              className="absolute top-[23px] left-[-49px] mt-1 bg-white-100 rounded-lg w-[168px] shadow-lg lg:cursor-pointer"
             >
               <div className="px-4 py-3 border-b-gray-400 border-b-[1px] flex items-center justify-between w-full">
                 <p
@@ -113,7 +113,7 @@ function SortBy({ setSortedFeedbacks, sortFeedbacks, filteredFeedbacks }) {
       </div>
       <Link to={"/new-feedback"}>
         <button
-          className={`bg-purple-50 text-white-100 text-[14px] font-bold py-[12px] px-4 rounded-[10px] flexCenter`}
+          className={`bg-purple-50 text-white-100 text-[14px] font-bold py-[12px] px-4 rounded-[10px] flexCenter lg:hover:bg-purple-100 lg:transition lg:duration-300`}
         >
           + Add Feedback
         </button>
