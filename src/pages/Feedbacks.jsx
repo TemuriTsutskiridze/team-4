@@ -22,6 +22,7 @@ function Feedbacks() {
   );
 
   const [upvoted, setUpvoted] = useState({});
+  const [sortedFeedbacks, setSortedFeedbacks] = useState([]);
 
   // Function to handle upvote clicks
   const handleUpvoteClick = (feedbackId) => {
@@ -50,7 +51,47 @@ function Feedbacks() {
             feedback.category.toLowerCase() === activeCategory.toLowerCase()
         );
 
-  // function to get clicked card's id to then pass it with props to FeedbackDetails page
+  // Sorting function based on the selected criteria
+  const sortFeedbacks = (criteria) => {
+    switch (criteria) {
+      case "most Upvotes":
+        return [...filteredFeedbacks].sort((a, b) => b.upvotes - a.upvotes);
+      case "least Upvotes":
+        return [...filteredFeedbacks].sort((a, b) => a.upvotes - b.upvotes);
+      case "most Comments":
+        return [...filteredFeedbacks].sort(
+          (a, b) =>
+            (b.comments ? b.comments.length : 0) +
+            (b.comments
+              ? b.comments.reduce(
+                  (total, comment) =>
+                    total + (comment.replies ? comment.replies.length : 0),
+                  0
+                )
+              : 0) -
+            ((a.comments ? a.comments.length : 0) +
+              (a.comments
+                ? a.comments.reduce(
+                    (total, comment) =>
+                      total + (comment.replies ? comment.replies.length : 0),
+                    0
+                  )
+                : 0))
+        );
+      case "least Comments":
+        return [...filteredFeedbacks].sort(
+          (a, b) =>
+            (a.comments ? a.comments.length : 0) -
+            (b.comments ? b.comments.length : 0)
+        );
+      default:
+        return filteredFeedbacks;
+    }
+  };
+
+  useEffect(() => {
+    setSortedFeedbacks(sortFeedbacks("Most Upvotes")); // Initial sorting.
+  }, [activeCategory]); // Re-sort when the active category changes
 
   return (
     <div className="w-screen">
@@ -66,10 +107,13 @@ function Feedbacks() {
           opacity: showMenu ? "0.5" : "1",
         }}
       >
-        <SortBy />
+        <SortBy
+          setSortedFeedbacks={setSortedFeedbacks}
+          sortFeedbacks={sortFeedbacks}
+        />
         <div className="px-6 pt-8 pb-[55px] flex flex-col items-center gap-y-4 w-full">
           {/* checking if filtered feedbacks array is empty. If it is, displaying message, if it's not, displaying cards*/}
-          {filteredFeedbacks.length === 0 ? (
+          {sortedFeedbacks && sortedFeedbacks.length === 0 ? (
             <div className="py-[76px] px-6 bg-white-100 rounded-lg flex flex-col items-center w-full">
               <img src="/assets/suggestions/empty-feedbacks-img.jpg" />
               <p className="text-blue-50 text-[18px] font-bold mt-[40px]">
@@ -88,17 +132,17 @@ function Feedbacks() {
               </Link>
             </div>
           ) : (
-            filteredFeedbacks.map((feedback) => (
-              <Link to={`/feedbackDetails/${feedback.id}`}>
+            sortedFeedbacks &&
+            sortedFeedbacks.map((feedback) => (
+              <Link to={`/feedbackDetails/${feedback.id}`} key={feedback.id}>
                 <div
                   className="bg-white-100 rounded-lg px-6 py-6 w-full flex flex-col items-start"
                   key={feedback.id}
-                  // onClick={}
                 >
                   <p className="text-blue-50 text-[13px] font-bold">
                     {feedback.title}
                   </p>
-                  <p className="text-blue-10 text-[13px] font-normal mt-2">
+                  <p className="text-blue-10 text-[13px] font-normal mt-2 w-[278px]">
                     {feedback.description}
                   </p>
                   <button className="mt-2 rounded-lg bg-white-50 text-blue-200 text-[13px] font-bold capitalize py-[5px] px-4">
@@ -107,7 +151,11 @@ function Feedbacks() {
                   <div className="flex flex-row items-center justify-between mt-4 w-full">
                     {feedback.upvotes ? (
                       <button
-                        onClick={() => handleUpvoteClick(feedback.id)}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          event.stopPropagation(); // Stop event propagation
+                          handleUpvoteClick(feedback.id); // Call handleUpvoteClick
+                        }}
                         className="rounded-lg bg-white-50 text-blue-50 text-[13px] font-bold py-2 pl-4 pr-3 flex flex-row items-center gap-[5px]"
                       >
                         {upvoted.hasOwnProperty(feedback.id) &&
@@ -116,7 +164,6 @@ function Feedbacks() {
                         ) : (
                           <IoIosArrowUp className="fill-blue-200" />
                         )}
-
                         <p>
                           {upvoted.hasOwnProperty(feedback.id) &&
                           upvoted[feedback.id]

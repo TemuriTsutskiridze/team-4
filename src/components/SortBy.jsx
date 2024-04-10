@@ -4,11 +4,22 @@ import { FaAngleUp } from "react-icons/fa";
 import { IoMdCheckmark } from "react-icons/io";
 import { Link } from "react-router-dom";
 
-function SortBy() {
+function SortBy({ setSortedFeedbacks, sortFeedbacks }) {
   const [sortBy, setSortBy] = useState("Most Upvotes");
   const [showDropDown, setShowDropdown] = useState(false);
   const [activeSort, setActiveSort] = useState("Most Upvotes");
 
+  const capitalize = (str) => {
+    return str.replace(/\b\w/g, (char) => char.toUpperCase());
+  };
+
+  const handleSortClick = (option) => {
+    setSortBy(option); // Update sortBy state
+    setActiveSort(capitalize(option));
+    setShowDropdown(false);
+    const sortedFeedbacks = sortFeedbacks(option); // Sorting based on the selected criteria
+    setSortedFeedbacks(sortedFeedbacks); // Setting sorted feedbacks
+  };
   // By clicking outside of dropdown, it gets closed
   const dropdownRef = useRef(null);
 
@@ -25,11 +36,6 @@ function SortBy() {
     };
   }, []);
 
-  const handleSortClick = (option) => {
-    setSortBy(option);
-    setActiveSort(option);
-    setShowDropdown(false);
-  };
   return (
     <div className="w-full px-6 py-[18px] bg-blue-100 flex justify-between items-center">
       <div className="flex items-center">
@@ -38,7 +44,9 @@ function SortBy() {
           className="flex items-end gap-1 ml-[3px] relative"
           onClick={() => setShowDropdown(!showDropDown)}
         >
-          <p className="text-[13px] text-white-100 font-semibold">{sortBy}</p>
+          <p className="text-[13px] text-white-100 font-semibold">
+            {activeSort}
+          </p>
           {!showDropDown ? (
             <FaAngleDown className="fill-white-100" />
           ) : (
@@ -52,8 +60,8 @@ function SortBy() {
             >
               <div className="px-4 py-3 border-b-gray-400 border-b-[1px] flex items-center justify-between w-full">
                 <p
-                  className="text-[14px] text-blue-10"
-                  onClick={() => handleSortClick("Most Upvotes")}
+                  className="text-[14px] text-blue-10 w-full"
+                  onClick={() => handleSortClick("most Upvotes")}
                 >
                   Most Upvotes
                 </p>
@@ -63,8 +71,8 @@ function SortBy() {
               </div>
               <div className="px-4 py-3 border-b-gray-400 border-b-[1px] flex items-center justify-between w-full">
                 <p
-                  className="text-[14px] text-blue-10"
-                  onClick={() => handleSortClick("Least Upvotes")}
+                  className="text-[14px] text-blue-10 w-full"
+                  onClick={() => handleSortClick("least Upvotes")}
                 >
                   Least Upvotes
                 </p>
@@ -74,8 +82,8 @@ function SortBy() {
               </div>
               <div className="px-4 py-3 border-b-gray-400 border-b-[1px] flex items-center justify-between w-full">
                 <p
-                  className="text-[14px] text-blue-10"
-                  onClick={() => handleSortClick("Most Comments")}
+                  className="text-[14px] text-blue-10 w-full"
+                  onClick={() => handleSortClick("most Comments")}
                 >
                   Most Comments
                 </p>
@@ -85,8 +93,8 @@ function SortBy() {
               </div>
               <div className="px-4 py-3 flex items-center justify-between w-full">
                 <p
-                  className="text-[14px] text-blue-10 "
-                  onClick={() => handleSortClick("Least Comments")}
+                  className="text-[14px] text-blue-10 w-full"
+                  onClick={() => handleSortClick("least Comments")}
                 >
                   Least Comments
                 </p>

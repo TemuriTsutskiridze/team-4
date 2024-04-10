@@ -32,8 +32,6 @@ const FeedbackDetails = () => {
     setAppData({ ...appData, productRequests: updatedProductRequests });
   };
 
-  console.log(id);
-
   return (
     <>
       <div className="flexCenter flex-col section gap-6 max-w-[730px] jost-font">
