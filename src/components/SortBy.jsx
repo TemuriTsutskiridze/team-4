@@ -66,7 +66,7 @@ function SortBy({ setSortedFeedbacks, sortFeedbacks, filteredFeedbacks }) {
               <div className="px-4 py-3 border-b-gray-400 border-b-[1px] flex items-center justify-between w-full">
                 <p
                   className="text-[14px] text-blue-10 w-full"
-                  onClick={() => handleSortClick("most Upvotes")}
+                  onClick={() => handleSortClick("Most Upvotes")}
                 >
                   Most Upvotes
                 </p>

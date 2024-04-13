@@ -54,7 +54,7 @@ function Feedbacks() {
   // Sorting function based on the selected criteria
   const sortFeedbacks = (criteria) => {
     switch (criteria) {
-      case "most Upvotes":
+      case "Most Upvotes":
         return [...filteredFeedbacks].sort((a, b) => b.upvotes - a.upvotes);
       case "least Upvotes":
         return [...filteredFeedbacks].sort((a, b) => a.upvotes - b.upvotes);
@@ -146,7 +146,7 @@ function Feedbacks() {
                   key={feedback.id}
                   className="w-full"
                 >
-                  <div className="md:w-screen md:px-[40px] lg:w-full lg:px-0">
+                  <div className="md:w-full lg:w-full lg:px-0">
                     <div
                       className="bg-white-100 rounded-lg px-6 py-6 w-full flex flex-col items-start md:py-7 md:px-8 md:flex-row md:items-center md:justify-between"
                       key={feedback.id}
