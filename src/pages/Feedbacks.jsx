@@ -23,6 +23,8 @@ function Feedbacks() {
 
   const [upvoted, setUpvoted] = useState({});
 
+  console.log("test commit 2");
+
   // Function to handle upvote clicks
   const handleUpvoteClick = (feedbackId) => {
     // Check if the feedback has been upvoted
