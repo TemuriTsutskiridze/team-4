@@ -1,27 +1,14 @@
 import { useState } from "react";
 import Button from "./Button";
 
-const Comments = ({ comment, addReply }) => {
+const Comments = ({ comment }) => {
   const [show, setShow] = useState(null);
-  const [showReplyIndex, setShowReplyIndex] = useState(null);
-  const [replyContent, setReplyContent] = useState("");
-  const [reReplyContent, setReReplyContent] = useState("");
 
   const togglePost = (postId) => {
     setShow(show === postId ? null : postId);
   };
-
-  const toggleReply = (index) => {
-    setShowReplyIndex(showReplyIndex === index ? null : index);
-  };
-
-  const handleReply = () => {
-    addReply(replyContent);
-    setReplyContent("");
-  };
-  const handleReReply = () => {
-    addReply(reReplyContent);
-    setReReplyContent("");
+  const toggleReply = (replyId) => {
+    setShow(show === replyId ? null : replyId);
   };
 
   return (
@@ -87,24 +74,21 @@ const Comments = ({ comment, addReply }) => {
                       </span>{" "}
                       {reply.content}
                     </p>
-                    {showReplyIndex === index && (
+                    {show === index && (
                       <div className="md:ml-0 ml-[-53px] flex md:flex-row flex-col md:items-start items-end justify-between gap-5 mt-4">
                         <textarea
                           className="w-full min-h-[80px] h-[80px] rounded-[5px] bg-white-10 
                                text-blue-50 text-[15px] px-4 py-3 border border-solid 
                               border-transparent focus:border-blue-500 outline-none"
-                          name="reply"
-                          placeholder="Reply here"
-                          id="replyTextarea"
+                          name="post"
+                          placeholder=""
+                          id="postTextarea"
                           cols="30"
                           rows="10"
-                          value={reReplyContent}
-                          onChange={(e) => setReReplyContent(e.target.value)}
                         ></textarea>
                         <Button
                           bgColor="bg-purple-50 hover:bg-purple-100 min-w-[125px]"
                           text="Post Reply"
-                          onclick={handleReReply}
                         />
                       </div>
                     )}
@@ -119,18 +103,15 @@ const Comments = ({ comment, addReply }) => {
                 className="w-full min-h-[80px] h-[80px] rounded-[5px] bg-white-10 
                                text-blue-50 text-[15px] px-4 py-3 border border-solid 
                               border-transparent focus:border-blue-500 outline-none"
-                name="reply"
-                placeholder="Reply here"
+                name="post"
+                placeholder=""
                 id="postTextarea"
                 cols="30"
                 rows="10"
-                value={replyContent}
-                onChange={(e) => setReplyContent(e.target.value)}
               ></textarea>
               <Button
                 bgColor="bg-purple-50 hover:bg-purple-100 min-w-[125px]"
                 text="Post Reply"
-                onclick={handleReply}
               />
             </div>
           )}
