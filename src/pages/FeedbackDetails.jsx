@@ -4,6 +4,7 @@ import BackButton from "../components/BackButton";
 import Button from "../components/Button";
 import { AppContext } from "../App";
 
+import { v4 as uuidv4 } from "uuid";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { TbMessageCircle2Filled } from "react-icons/tb";
 import Comments from "../components/Comments";
@@ -13,13 +14,14 @@ const FeedbackDetails = () => {
   let { id } = useParams();
   const { appData, setAppData } = useContext(AppContext);
 
-  const post = appData.productRequests[id - 1];
-
   const [text, setText] = useState("");
   const maxLength = 250;
-  const handleChange = (event) => {
-    setText(event.target.value);
-  };
+
+  const initialPost =
+    JSON.parse(localStorage.getItem("productRequests")) ||
+    appData.productRequests[id - 1];
+
+  const [post, setPost] = useState(initialPost);
 
   const giveVote = (postId, vote) => {
     const updatedProductRequests = appData.productRequests.map((post) => {
@@ -31,6 +33,54 @@ const FeedbackDetails = () => {
     });
     setAppData({ ...appData, productRequests: updatedProductRequests });
   };
+
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+
+  const addReply = (commentId, replyContent) => {
+    const updatedComments = post.comments.map((comment) => {
+      if (comment.id === commentId) {
+        const newReply = {
+          id: uuidv4(),
+          user: appData.currentUser,
+          content: replyContent,
+        };
+        return {
+          ...comment,
+          replies: comment.replies
+            ? [...comment.replies, newReply]
+            : [newReply],
+        };
+      }
+      return comment;
+    });
+    setPost({ ...post, comments: updatedComments });
+    localStorage.setItem(
+      "productRequests",
+      JSON.stringify({ ...post, comments: updatedComments })
+    );
+  };
+
+  const pushComment = () => {
+    const newComment = {
+      id: uuidv4(),
+      user: appData.currentUser,
+      content: text,
+    };
+
+    // Update comments array in newPost
+    const updatedPost = {
+      ...post,
+      comments: post.comments ? [...post.comments, newComment] : [newComment],
+    };
+
+    setPost(updatedPost);
+    localStorage.setItem("productRequests", JSON.stringify(updatedPost));
+
+    setText("");
+  };
+  localStorage.clear();
 
   return (
     <>
@@ -108,7 +158,11 @@ const FeedbackDetails = () => {
           </h4>
           {post.comments &&
             post.comments.map((comment) => (
-              <Comments key={comment.id} comment={comment} />
+              <Comments
+                key={comment.id}
+                comment={comment}
+                addReply={(replyContent) => addReply(comment.id, replyContent)}
+              />
             ))}
         </div>
 
@@ -130,13 +184,14 @@ const FeedbackDetails = () => {
             onChange={handleChange}
           ></textarea>
 
-          <div className="flexBetween">
+          <div className="flexBetween md:gap-9 gap-3">
             <p className="md:text-[15px] text-[13px] text-blue-10">
               {maxLength - text.length} Characters left
             </p>
             <Button
               bgColor="bg-purple-50 hover:bg-purple-100"
               text="Post Comment"
+              onclick={pushComment}
             />
           </div>
         </div>
