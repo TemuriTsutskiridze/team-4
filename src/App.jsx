@@ -30,7 +30,7 @@ const App = () => {
         <Route path="/" element={<Navigate to="/feedbacks" />} />
         <Route path="/feedbacks" element={<Feedbacks />} />
         <Route path="/new-feedback" element={<NewFeedback />} />
-        <Route path="/edit-feedback" element={<EditFeedback />} />
+        <Route path="/edit-feedback/:id" element={<EditFeedback />} />
         <Route path="/roadmap" element={<Roadmap />} />
         <Route path="/feedbackDetails/:id" element={<FeedbackDetails />} />
       </Routes>

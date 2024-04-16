@@ -16,6 +16,7 @@ function Feedbacks() {
     activeCategory,
     setActiveCategory,
   } = useContext(AppContext);
+
   //Filtering out feedbacks with status "suggestion"
   const suggestionFeedbacks = appData.productRequests.filter(
     (feedback) => feedback.status === "suggestion"
@@ -41,8 +42,6 @@ function Feedbacks() {
       }));
     }
   };
-
-  console.log("test");
 
   // Filtering feedbacks based on the active category
   const filteredFeedbacks =
