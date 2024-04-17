@@ -3,13 +3,23 @@ import EditIcon from "../components/Editicon";
 import CancelButton from "../components/cancelButton";
 import Button from "../components/Button";
 import DeleteButton from "../components/DeleteButton";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AppContext } from "../App";
 
 export default function EditFeedback() {
+  const { id } = useParams();
+  const { appData, setAppData } = useContext(AppContext);
+  const initialPost =
+    JSON.parse(localStorage.getItem("productRequests")) ||
+    appData.productRequests[id - 1];
+
+  const [post, setPost] = useState(initialPost);
+
   return (
     <div className="flexCenter flex-col section gap-8 w-[730px] jost-font ml-auto">
       <div className="flexBetween w-full">
-        <Link to="/feedbackDetails/:id">
+        <Link to={`/feedbackDetails/${post.id}`}>
           <BackButton />
         </Link>
         <br />
@@ -20,7 +30,7 @@ export default function EditFeedback() {
         <EditIcon />
         <div>
           <h1 className="font-jost font-semibold text-24 leading-34.68 tracking--0.33 mr-2">
-            Editing ‘Add a dark theme option’
+            Editing "{post.title}"
           </h1>
           <br />
           <label

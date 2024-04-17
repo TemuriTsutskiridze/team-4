@@ -11,7 +11,7 @@ import Comments from "../components/Comments";
 import { Link, useParams } from "react-router-dom";
 
 const FeedbackDetails = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const { appData, setAppData } = useContext(AppContext);
 
   const [text, setText] = useState("");
@@ -89,7 +89,7 @@ const FeedbackDetails = () => {
           <Link to="/feedbacks">
             <BackButton />
           </Link>
-          <Link to="/edit-feedback">
+          <Link to={`/edit-feedback/${post.id}`}>
             <Button
               bgColor="bg-blue-200 hover:bg-blue-10"
               text="Edit Feedback"
