@@ -42,8 +42,6 @@ function Feedbacks() {
     }
   };
 
-  console.log("test");
-
   // Filtering feedbacks based on the active category
   const filteredFeedbacks =
     activeCategory.toLowerCase() === "all"
