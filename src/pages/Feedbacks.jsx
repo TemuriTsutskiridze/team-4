@@ -8,14 +8,8 @@ import { Link } from "react-router-dom";
 import HeaderTablet from "../components/HeaderTablet";
 
 function Feedbacks() {
-  const {
-    appData,
-    setAppData,
-    showMenu,
-    setShowMenu,
-    activeCategory,
-    setActiveCategory,
-  } = useContext(AppContext);
+  const { appData, showMenu, setShowMenu, activeCategory, setActiveCategory } =
+    useContext(AppContext);
 
   //Filtering out feedbacks with status "suggestion"
   const suggestionFeedbacks = appData.productRequests.filter(
