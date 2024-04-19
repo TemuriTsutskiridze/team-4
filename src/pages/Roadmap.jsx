@@ -4,6 +4,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { AppContext } from "../App";
+import TabletRoadmap from "../components/TabletRoadmap";
 
 export default function Roadmap() {
   document.body.style.overflowY = "auto";
@@ -61,8 +62,8 @@ export default function Roadmap() {
   };
 
   return (
-    <div className="w-screen">
-      <div className="w-full px-6 py-[26px] flex items-center justify-between bg-blue-100">
+    <div className="w-screen  md:pt-[56px] md:px-[40px] lg:pt-[78px] lg:px-[165px] lg:pb-[120px]">
+      <div className="w-full px-6 py-[26px] flex items-center justify-between bg-blue-100  md:rounded-lg">
         <div>
           <Link to={"/feedbacks"}>
             <button className="text-[13px] font-semibold text-white-100 hover:underline transition-all">
@@ -82,7 +83,12 @@ export default function Roadmap() {
           </button>
         </Link>
       </div>
-      <div className="w-full flex justify-between border-b-gray-300 border-b">
+      <TabletRoadmap
+        plannedFeedbacks={plannedFeedbacks}
+        inProgressFeedbacks={inProgressFeedbacks}
+        liveFeedbacks={liveFeedbacks}
+      />
+      <div className="w-full flex justify-between border-b-gray-300 border-b md:hidden">
         <div
           className="py-5 w-[135px] flex items-center justify-center border-b-4 border-b-transparent"
           onClick={() => handleStatusClick("Planned")}
@@ -140,12 +146,12 @@ export default function Roadmap() {
           </p>
         </div>
       </div>
-      <div className="px-6 pt-6 pb-[98px] flex flex-col items-start">
-        <p className="text-[18px] font-bold text-blue-50">
+      <div className="px-6 pt-6 pb-[98px] flex flex-col items-start md:px-0 md:pt-8 md:hidden">
+        <p className="text-[18px] font-bold text-blue-50 md:hidden">
           {activeStatus} ({filteredFeedbacks.length})
         </p>
         {activeStatus === "Planned" && (
-          <p className="mt-2 text-[13px] text-blue-10">
+          <p className="mt-2 text-[13px] text-blue-10 md:hidden">
             Ideas prioritized for research
           </p>
         )}
@@ -157,7 +163,7 @@ export default function Roadmap() {
         {activeStatus === "Live" && (
           <p className="mt-2 text-[13px] text-blue-10">Released features</p>
         )}
-        <div className="pt-6 md:px-0 md:pt-6 md:pb-0 flex flex-col items-center gap-y-4 w-full lg:px-0">
+        <div className="pt-6 md:px-0 md:pt-6 md:pb-0 flex flex-col items-center gap-y-4 w-full lg:px-0 md:hidden">
           {/* checking if filtered feedbacks array is empty. If it is, displaying message, if it's not, displaying cards*/}
           {filteredFeedbacks && filteredFeedbacks.length === 0 ? (
             <div className="py-[76px] px-6 bg-white-100 rounded-lg flex flex-col items-center w-full md:[pb-110px]">
@@ -200,30 +206,6 @@ export default function Roadmap() {
                     }
                   >
                     <div className="md:flex md:flex-start md:gap-x-[40px]">
-                      {feedback.upvotes ? (
-                        <button
-                          onClick={(event) => {
-                            event.preventDefault();
-                            event.stopPropagation(); // Stop event propagation
-                            handleUpvoteClick(feedback.id); // Call handleUpvoteClick
-                          }}
-                          className="hidden bg-white-50 hover:bg-[#cfd7ff] md:mt-0 mt-3 md:h-[53px] py-[7px] 
-                          md:flex md:flex-col items-center rounded-[10px] md:w-[45px] w-[69px] text-blue-50 text-[13px] font-bold lg:transition lg:duration-300"
-                        >
-                          {upvoted.hasOwnProperty(feedback.id) &&
-                          upvoted[feedback.id] ? (
-                            <IoIosArrowDown className="fill-blue-200" />
-                          ) : (
-                            <IoIosArrowUp className="fill-blue-200" />
-                          )}
-                          <p>
-                            {upvoted.hasOwnProperty(feedback.id) &&
-                            upvoted[feedback.id]
-                              ? feedback.upvotes + 1
-                              : feedback.upvotes}
-                          </p>
-                        </button>
-                      ) : null}
                       <div className="flex flex-col">
                         {activeStatus === "Planned" && (
                           <div className="flex items-center gap-2 mb-4">
@@ -264,11 +246,16 @@ export default function Roadmap() {
                             event.stopPropagation(); // Stop event propagation
                             handleUpvoteClick(feedback.id); // Call handleUpvoteClick
                           }}
-                          className="rounded-lg bg-white-50 text-blue-50 text-[13px] font-bold py-2 pl-4 pr-3 flex flex-row items-center gap-[5px] "
+                          className={`rounded-lg text-[13px] font-bold py-2 pl-4 pr-3 flex flex-row items-center gap-[5px]  ${
+                            upvoted.hasOwnProperty(feedback.id) &&
+                            upvoted[feedback.id]
+                              ? "bg-blue-600 text-white-100 "
+                              : "bg-white-50 text-blue-50 hover:bg-skyBlue-100 transition duration-150"
+                          }`}
                         >
                           {upvoted.hasOwnProperty(feedback.id) &&
                           upvoted[feedback.id] ? (
-                            <IoIosArrowDown className="fill-blue-200" />
+                            <IoIosArrowDown className="fill-white" />
                           ) : (
                             <IoIosArrowUp className="fill-blue-200" />
                           )}
