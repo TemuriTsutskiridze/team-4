@@ -154,12 +154,17 @@ function Feedbacks() {
                               event.stopPropagation(); // Stop event propagation
                               handleUpvoteClick(feedback.id); // Call handleUpvoteClick
                             }}
-                            className="hidden bg-white-50 hover:bg-[#cfd7ff] md:mt-0 mt-3 md:h-[53px] py-[7px] 
-                          md:flex md:flex-col items-center rounded-[10px] md:w-[45px] w-[69px] text-blue-50 text-[13px] font-bold lg:transition lg:duration-300"
+                            className={`hidden  md:mt-0 mt-3 md:h-[53px] py-[7px] 
+                          md:flex md:flex-col items-center rounded-[10px] md:w-[45px] w-[69px]  text-[13px] font-bold lg:transition lg:duration-300  ${
+                            upvoted.hasOwnProperty(feedback.id) &&
+                            upvoted[feedback.id]
+                              ? "bg-blue-200 text-white-100 "
+                              : "bg-white-50 text-blue-50 hover:bg-skyBlue-100 transition duration-150"
+                          }`}
                           >
                             {upvoted.hasOwnProperty(feedback.id) &&
                             upvoted[feedback.id] ? (
-                              <IoIosArrowDown className="fill-blue-200" />
+                              <IoIosArrowDown className="fill-white" />
                             ) : (
                               <IoIosArrowUp className="fill-blue-200" />
                             )}

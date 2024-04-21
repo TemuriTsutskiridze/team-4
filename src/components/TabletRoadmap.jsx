@@ -1,5 +1,3 @@
-import { useContext, useState } from "react";
-import { AppContext } from "../App";
 import TabletCards from "./TabletCards";
 import { Link } from "react-router-dom";
 

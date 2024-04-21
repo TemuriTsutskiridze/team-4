@@ -8,7 +8,8 @@ import TabletRoadmap from "../components/TabletRoadmap";
 
 export default function Roadmap() {
   document.body.style.overflowY = "auto";
-  const { appData } = useContext(AppContext);
+  const { appData, plannedFeedbacks, inProgressFeedbacks, liveFeedbacks } =
+    useContext(AppContext);
 
   const [upvoted, setUpvoted] = useState({});
 
@@ -31,21 +32,6 @@ export default function Roadmap() {
   };
 
   const [activeStatus, setActiveStatus] = useState("Planned");
-
-  //Filtering out feedbacks with status "Planned"
-  const plannedFeedbacks = appData.productRequests.filter(
-    (feedback) => feedback.status === "planned"
-  );
-
-  //Filtering out feedbacks with status "In-Progress"
-  const inProgressFeedbacks = appData.productRequests.filter(
-    (feedback) => feedback.status === "in-progress"
-  );
-
-  //Filtering out feedbacks with status "Live"
-  const liveFeedbacks = appData.productRequests.filter(
-    (feedback) => feedback.status === "live"
-  );
 
   // Filtering feedbacks based on the active status
   const filteredFeedbacks =
