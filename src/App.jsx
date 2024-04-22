@@ -14,7 +14,7 @@ const App = () => {
   const [appData, setAppData] = useState(data);
   const [showMenu, setShowMenu] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
-
+  console.log(appData);
   return (
     <AppContext.Provider
       value={{
