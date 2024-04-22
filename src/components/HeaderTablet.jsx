@@ -6,6 +6,7 @@ function HeaderTablet({ activeCategory, setActiveCategory }) {
   const handleCategoryClick = (category) => {
     setActiveCategory(category);
   };
+
   return (
     <div className="hidden md:w-full md:flex mf:flex-row md:gap-x-[10px] lg:flex-col lg:gap-y-6 lg:w-[255px]">
       <div

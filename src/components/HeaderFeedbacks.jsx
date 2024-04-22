@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import { AppContext } from "../App";
 
 function HeaderFeedbacks({
   showMenu,
@@ -9,6 +10,8 @@ function HeaderFeedbacks({
   setActiveCategory,
 }) {
   const menuRef = useRef(null);
+  const { plannedFeedbacks, inProgressFeedbacks, liveFeedbacks } =
+    useContext(AppContext);
 
   useEffect(() => {
     // Add event listener when component mounts
@@ -164,7 +167,9 @@ function HeaderFeedbacks({
                       Planned
                     </p>
                   </div>
-                  <p className="font-bold text-blue-10 text-[16px]">2</p>
+                  <p className="font-bold text-blue-10 text-[16px]">
+                    {plannedFeedbacks.length}
+                  </p>
                 </div>
                 <div className="flex flex-row items-center justify-between">
                   <div className="flex flex-row items-center gap-4">
@@ -173,14 +178,18 @@ function HeaderFeedbacks({
                       In-Progress
                     </p>
                   </div>
-                  <p className="font-bold text-blue-10 text-[16px]">3</p>
+                  <p className="font-bold text-blue-10 text-[16px]">
+                    {inProgressFeedbacks.length}
+                  </p>
                 </div>
                 <div className="flex flex-row items-center justify-between">
                   <div className="flex flex-row items-center gap-4">
                     <div className="w-[10px] h-[10px] rounded-full bg-skyBlue-50"></div>
                     <p className="text-[16px] text-blue-10 font-normal">Live</p>
                   </div>
-                  <p className="font-bold text-blue-10 text-[16px]">1</p>
+                  <p className="font-bold text-blue-10 text-[16px]">
+                    {liveFeedbacks.length}
+                  </p>
                 </div>
               </div>
             </div>
