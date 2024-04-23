@@ -15,6 +15,21 @@ const App = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All");
 
+  //Filtering out feedbacks with status "Planned"
+  const plannedFeedbacks = appData.productRequests.filter(
+    (feedback) => feedback.status === "planned"
+  );
+
+  //Filtering out feedbacks with status "In-Progress"
+  const inProgressFeedbacks = appData.productRequests.filter(
+    (feedback) => feedback.status === "in-progress"
+  );
+
+  //Filtering out feedbacks with status "Live"
+  const liveFeedbacks = appData.productRequests.filter(
+    (feedback) => feedback.status === "live"
+  );
+
   return (
     <AppContext.Provider
       value={{
@@ -24,6 +39,9 @@ const App = () => {
         setShowMenu,
         activeCategory,
         setActiveCategory,
+        plannedFeedbacks,
+        inProgressFeedbacks,
+        liveFeedbacks,
       }}
     >
       <Routes>

@@ -17,73 +17,78 @@ export default function EditFeedback() {
   const [post, setPost] = useState(initialPost);
 
   return (
-    <div className="flexCenter flex-col section gap-8 w-[730px] jost-font ml-auto">
-      <div className="flexBetween w-full">
-        <Link to={`/feedbackDetails/${post.id}`}>
-          <BackButton />
-        </Link>
-        <br />
-      </div>
-
-      <div className="flex flex-col items-start gap-y-6 p-6 pt-0 bg-[#ffffff] rounded-lg relative z-10">
-        <br />
+    <div className="w-screen px-6 pt-[34px] pb-[77px] md:pt-[56px] md:px-[114px] md:pb-[122px] lg:pt-[92px] lg:pb-[129px] lg:px-[450px]">
+      <Link to={`/feedbackDetails/${post.id}`}>
+        <BackButton />
+      </Link>
+      <div className="flex w-full flex-col items-start px-6 pb-6 pt-11 bg-[#ffffff] rounded-lg relative z-10 mt-[55px] md:px-[42px] md:pb-[40px] md:pt-[52px]">
         <EditIcon />
-        <div>
-          <h1 className="font-jost font-semibold text-24 leading-34.68 tracking--0.33 mr-2">
-            Editing "{post.title}"
-          </h1>
-          <br />
-          <label
-            htmlFor="feedbackTitle"
-            className="jost-font font-bold text-14 leading-[20.23px] tracking-[0.19px]"
-          >
-            Feedback Title
-          </label>
-          <p>Add a short, descriptive headline</p>
-          <input
-            type="text"
-            id="feedbackTitle"
-            className="w-full border border-gray-10 rounded-md py-2 px-3 mt-2 bg-[#F7F8FD]"
-          />
-        </div>
+        <h1 className="font-jost font-bold text-[16px] text-blue-50 md:text-[24px]">
+          Editing '{post.title}'
+        </h1>
+        <p className="text-[13px] text-blue-50 font-bold mt-6 md:mt-[50px] md:text-[16px]">
+          Feedback Title
+        </p>
+        <p className="text-[13px] text-blue-10 mt-[3px] md:text-[14px]">
+          Add a short, descriptive headline
+        </p>
+        <input
+          type="text"
+          id="feedbackTitle"
+          className="w-full rounded-md py-3 px-4 mt-4 bg-[#F7F8FD] text-[13px] text-blue-50"
+          placeholder={post.title}
+        />
 
-        <div>
-          <label
-            htmlFor="category"
-            className="jost-font font-bold text-14 leading-[20.23px] tracking-[0.19px]"
-          >
-            Category
-          </label>
-          <p>Choose a category for your feedback</p>
-          <select className="border border-gray-300 rounded-lg py-2 px-3 mt-2 w-full bg-[#F7F8FD]">
-            <option value="category1">Feature</option>
-            <option value="category2">UI</option>
-            <option value="category3">UX</option>
-            <option value="category4">Enhancement</option>
-            <option value="category5">Bug</option>
-          </select>
-        </div>
+        <p className="text-[13px] text-blue-50 font-bold md:text-[16px] mt-6">
+          Category
+        </p>
+        <p className="text-[13px] text-blue-10 mt-[3px] md:text-[14px]">
+          Choose a category for your feedback
+        </p>
+        <select
+          name="category"
+          id="category"
+          className="w-full rounded-md py-3 px-4 mt-4 bg-[#F7F8FD] text-[13px] text-blue-50"
+        >
+          <option className="capitalize">UI</option>
+          <option className="capitalize">UX</option>
+          <option className="capitalize">Enhancement</option>
+          <option className="capitalize">Bug</option>
+          <option className="capitalize">Feature</option>
+        </select>
 
-        <div>
-          <label
-            htmlFor="category"
-            className="jost-font font-bold text-14 leading-[20.23px] tracking-[0.19px]"
-          >
-            Update Status
-          </label>
-          <p>Change feature state</p>
-          <select className="border border-gray-300 rounded-lg py-2 px-3 mt-2 w-full bg-[#F7F8FD]">
-            <option value="category1">Suggestion</option>
-            <option value="category2">Planned</option>
-            <option value="category3">In-Progress</option>
-            <option value="category4">Live</option>
-          </select>
-        </div>
+        <p className="text-[13px] text-blue-50 font-bold md:text-[16px] mt-6">
+          Update Status
+        </p>
+        <p className="text-[13px] text-blue-10 mt-[3px] md:text-[14px]">
+          Change feature state
+        </p>
+        <select
+          name="category"
+          id="category"
+          className="w-full rounded-md py-3 px-4 mt-4 bg-[#F7F8FD] text-[13px] text-blue-50"
+        >
+          <option className="capitalize">Planned</option>
+          <option className="capitalize">In-Progress</option>
+          <option className="capitalize">Live</option>
+        </select>
 
-        <div className="flex items-center justify-between  gap-4 ml-auto">
+        <p className="text-[13px] text-blue-50 font-bold mt-6 md:text-[16px]">
+          Feedback Detail
+        </p>
+        <p className="text-[13px] text-blue-10 mt-[3px] md:text-[14px]">
+          Include any specific comments on what should be improved, added, etc.
+        </p>
+        <textarea className="w-full rounded-md py-3 px-4 mt-4 bg-[#F7F8FD] text-[13px] text-blue-50"></textarea>
+        <div className="flex flex-col items-center gap-4 mt-10 w-full md:flex-row md:justify-between md:gap-0">
           <DeleteButton bgColor="bg-red-600" text="Delete" />
-          <CancelButton bgColor="bg-blue-50" text="Cancel" />
-          <Button bgColor="bg-purple-50" text="Add Feedback" />
+          <div className="flex flex-col items-center md:flex-row gap-4 w-full md:w-auto">
+            <CancelButton bgColor="bg-blue-50" text="Cancel" />
+            <Button
+              bgColor="bg-purple-50 w-full md:w-[144px]"
+              text="Save Changes"
+            />
+          </div>
         </div>
       </div>
     </div>

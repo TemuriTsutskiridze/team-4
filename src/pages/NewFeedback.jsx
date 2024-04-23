@@ -24,6 +24,8 @@ export default function NewFeedback() {
     // Proceed with submission
   };
 
+  document.body.style.overflowY = "auto";
+
   return (
     <div className="flexCenter flex-col section gap-8 w-[730px] jost-font ml-auto">
       <div className="flexBetween w-full">
