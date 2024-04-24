@@ -1,14 +1,31 @@
 import { useState } from "react";
 import Button from "./Button";
 
-const Comments = ({ comment }) => {
+const Comments = ({ comment, onAddReply }) => {
   const [show, setShow] = useState(null);
+  const [replyText, setReplyText] = useState("");
+  const [replyingTo, setReplyingTo] = useState(null);
 
   const togglePost = (postId) => {
     setShow(show === postId ? null : postId);
+    setReplyingTo(comment.user.username);
   };
   const toggleReply = (replyId) => {
     setShow(show === replyId ? null : replyId);
+    setReplyingTo(comment.replies[replyId].user.username);
+    console.log(comment.replies[replyId].user.username);
+  };
+
+  const handleReplyChange = (e) => {
+    setReplyText(e.target.value);
+  };
+
+  const handleReplySubmit = () => {
+    if (replyText.trim()) {
+      onAddReply(replyText, replyingTo);
+      setReplyText("");
+      setShow(null);
+    }
   };
 
   return (
@@ -70,7 +87,7 @@ const Comments = ({ comment }) => {
                     </div>
                     <p className="md:ml-0 ml-[-53px] mt-3 md:text-[15px] text-[13px] text-blue-10">
                       <span className="text-purple-100 font-bold">
-                        @{reply.replyingTo}
+                        @{reply.replyingTo || replyingTo}
                       </span>{" "}
                       {reply.content}
                     </p>
@@ -81,14 +98,17 @@ const Comments = ({ comment }) => {
                                text-blue-50 text-[15px] px-4 py-3 border border-solid 
                               border-transparent focus:border-blue-500 outline-none"
                           name="post"
-                          placeholder=""
+                          placeholder="Type your reply here..."
                           id="postTextarea"
                           cols="30"
                           rows="10"
+                          value={replyText}
+                          onChange={handleReplyChange}
                         ></textarea>
                         <Button
                           bgColor="bg-purple-50 hover:bg-purple-100 min-w-[125px]"
                           text="Post Reply"
+                          onclick={handleReplySubmit}
                         />
                       </div>
                     )}
@@ -104,14 +124,17 @@ const Comments = ({ comment }) => {
                                text-blue-50 text-[15px] px-4 py-3 border border-solid 
                               border-transparent focus:border-blue-500 outline-none"
                 name="post"
-                placeholder=""
+                placeholder="Type your reply here..."
                 id="postTextarea"
                 cols="30"
                 rows="10"
+                value={replyText}
+                onChange={handleReplyChange}
               ></textarea>
               <Button
                 bgColor="bg-purple-50 hover:bg-purple-100 min-w-[125px]"
                 text="Post Reply"
+                onclick={handleReplySubmit}
               />
             </div>
           )}
